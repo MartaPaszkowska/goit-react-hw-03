@@ -1,5 +1,10 @@
 import css from "./SearchBox.module.css";
-const SearchBox = () => {
-	return <p>SearchBox</p>;
-};
-export default SearchBox;
+
+export default function SearchBox({ value, onSearch }) {
+	return (
+		<div className={css.sContainer}>
+			<label>Find contacts by name:</label>
+			<input type="text" value={value} onChange={onSearch} />
+		</div>
+	);
+}

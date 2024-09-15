@@ -1,0 +1,14 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.appContainer {
+	max-width: 600px;
+	width: 100%;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

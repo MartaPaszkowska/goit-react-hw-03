@@ -1,19 +1,22 @@
-import ContactList from "../ContactList/ContactList.jsx";
-import initialContacts from "../../contacts.json";
-import ContactForm from "../ContactForm/ContactForm.jsx";
-import SearchBox from "../SearchBox/SearchBox.jsx";
-import css from "./App.module.css";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import ContactForm from "./ContactForm";
+import SearchBox from "./SearchBox";
+import ContactList from "./ContactList";
+import contactsData from "../contacts.json"; // Importowanie kontaktów z pliku JSON
+import "./App.css";
 
-export default function App() {
+function App() {
+	// Inicjalizacja kontaktów
 	const [contacts, setContacts] = useState(() => {
+		// Sprawdzamy, czy istnieją kontakty w Local Storage
 		const savedContacts = localStorage.getItem("contacts");
-
-		return savedContacts ? JSON.parse(savedContacts) : initialContacts;
+		// Jeśli są, zwracamy je, a jeśli nie ma, ładujemy dane z pliku JSON
+		return savedContacts ? JSON.parse(savedContacts) : contactsData;
 	});
 
 	const [filter, setFilter] = useState("");
 
+	// Zapisujemy kontakty do Local Storage przy każdej zmianie
 	useEffect(() => {
 		localStorage.setItem("contacts", JSON.stringify(contacts));
 	}, [contacts]);
@@ -35,7 +38,7 @@ export default function App() {
 	);
 
 	return (
-		<div className={css.appContainer}>
+		<div className="app-container">
 			<h1>Phonebook</h1>
 			<ContactForm onAddContact={addContact} />
 			<SearchBox value={filter} onSearch={handleSearch} />
@@ -46,3 +49,5 @@ export default function App() {
 		</div>
 	);
 }
+
+export default App;
